@@ -25,7 +25,27 @@ if status is-interactive
     alias ls eza
     alias lt 'eza --tree'
 
+    # Setup Rustup 
+    source "$HOME/.cargo/env.fish"
+
+    # Show Fastfetch to make it obvious its in distrobox 
+    fastfetch
+
     # Setup zoxide with the 
     zoxide init fish --cmd cd  | source
 end
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /home/bgriebel/Boxes/archbox/miniforge3/bin/conda
+    eval /home/bgriebel/Boxes/archbox/miniforge3/bin/conda "shell.fish" "hook" $argv | source
+else
+    if test -f "/home/bgriebel/Boxes/archbox/miniforge3/etc/fish/conf.d/conda.fish"
+        . "/home/bgriebel/Boxes/archbox/miniforge3/etc/fish/conf.d/conda.fish"
+    else
+        set -x PATH "/home/bgriebel/Boxes/archbox/miniforge3/bin" $PATH
+    end
+end
+# <<< conda initialize <<<
 
